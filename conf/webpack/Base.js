@@ -55,7 +55,7 @@ class WebpackBaseConfig {
             ]
           },
           {
-            test: /\.(png|jpg|gif|mp4|ogg|svg|woff|woff2|ttf|eot)$/,
+            test: /\.(png|jpg|gif|mp4|ogg|svg|woff|woff2|ttf|eot|wav)$/,
             loader: 'file-loader'
           },
           {

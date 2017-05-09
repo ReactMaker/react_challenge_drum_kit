@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Sound from 'react-sound';
 import drums from './HomeConstants';
 import './Home.less';
 
@@ -31,16 +32,28 @@ export default class Home extends Component {
 
     return (
       <div className="keys">
-        {drums.map(drum => (
-          <div className={`key ${currentKeyCode === drum.keyCode ? 'playing' : ''}`}>
-            <kbd>
-              {drum.key}
-            </kbd>
-            <span className="sound">
-              {drum.name}
-            </span>
-          </div>
-        ))}
+        {drums.map((drum) => {
+          const className = `key ${currentKeyCode === drum.keyCode ? 'playing' : ''}`;
+          const url = require(`static/sounds/${drum.sound}`);
+          const playStatus = currentKeyCode === drum.keyCode
+            ? Sound.status.PLAYING
+            : Sound.status.STOPPED;
+
+          return (
+            <div className={className}>
+              <kbd>
+                {drum.key}
+              </kbd>
+              <span className="sound">
+                {drum.name}
+              </span>
+              <Sound
+                url={url}
+                playStatus={playStatus}
+              />
+            </div>
+          );
+        })}
       </div>
     );
   }
