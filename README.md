@@ -1,1 +1,1 @@
-[Drum Kit](https://reactmaker.github.io/react_challenge_drum_kit/index.html#/)
+[Drum Kit](https://reactmaker.github.io/react_challenge_drum_kit/#/)
