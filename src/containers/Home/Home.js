@@ -5,11 +5,8 @@ import './Home.less';
 
 export default class Home extends Component {
 
-  constructor() {
-    super();
-    this.state = {
-      currentKeyCode: 0,
-    };
+  state = {
+    currentKeyCode: 0,
   }
 
   componentDidMount() {
