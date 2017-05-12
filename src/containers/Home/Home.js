@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Sound from 'react-sound';
 import drums from './HomeConstants';
 import './Home.less';
 
@@ -7,6 +6,7 @@ export default class Home extends Component {
 
   state = {
     currentKeyCode: 0,
+    currentSound: 'boom.wav',
   }
 
   componentDidMount() {
@@ -20,21 +20,22 @@ export default class Home extends Component {
     if (matchDrum && Object.keys(matchDrum).length !== 0) {
       this.setState({
         currentKeyCode: key,
+        currentSound: matchDrum.sound,
+      }, () => {
+        const audio = this.audio;
+        audio.currentTime = 0;
+        audio.play();
       });
     }
   }
 
   render() {
-    const { currentKeyCode } = this.state;
+    const { currentKeyCode, currentSound } = this.state;
 
     return (
       <div className="keys">
         {drums.map((drum) => {
           const className = `key ${currentKeyCode === drum.keyCode ? 'playing' : ''}`;
-          const url = require(`static/sounds/${drum.sound}`);
-          const playStatus = currentKeyCode === drum.keyCode
-            ? Sound.status.PLAYING
-            : Sound.status.STOPPED;
 
           return (
             <div className={className}>
@@ -44,13 +45,10 @@ export default class Home extends Component {
               <span className="sound">
                 {drum.name}
               </span>
-              <Sound
-                url={url}
-                playStatus={playStatus}
-              />
             </div>
           );
         })}
+        <audio ref={(audio) => { this.audio = audio; }} src={require(`static/sounds/${currentSound}`)} />
       </div>
     );
   }
