@@ -2,7 +2,7 @@
 
 用 ReactJS 來做一個鼓手敲擊介面，藉由敲擊鍵盤來讓網站發出鼓聲
 
-## [DEMO](https://reactmaker.github.io/react_challenge_drum_kit/#/)
+## [Demo](https://reactmaker.github.io/react_challenge_drum_kit/#/)
 
 ## 特色
 
